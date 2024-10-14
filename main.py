@@ -1,7 +1,9 @@
-from db import Coleccion
-from db import Documento
+from bd import Coleccion
+from bd import Documento
 
 def import_collection(nombre_archivo):
-    Coleccion = coleccion 
+    Coleccion = Coleccion()
+
+   
 
     

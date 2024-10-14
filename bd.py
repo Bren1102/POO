@@ -49,3 +49,26 @@ class BaseDeDatosDocumental:
     
     def __str__(self):
         return "Base de datos documental con {len(self.colecciones)}"
+    
+
+
+
+schema = 'Nombre,Apellido,Edad,Mail'
+row = 'Brenda,Morrone,36,bmorrone@hotmail.com'
+
+class Str2Dic():
+    def __init__(self, schema, separator=','):
+        self.schema = schema.split(separator)
+        self.separator = separator
+    def convert(self, row)
+        tmp = row.split(self.separator)
+        if len(tmp) == len(self.schema):
+            i = 0
+            d = {}
+            while i < len(tmp):
+                d[self.schema[i]] = tmp[i]
+                i += 1
+            return d
+
+            
+        
