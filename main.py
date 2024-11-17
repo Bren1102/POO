@@ -23,7 +23,7 @@ class ColeccionNueva(Coleccion):
             linea = f.readline().strip()
 
 c = ColeccionNueva('pruebaDatos', 1)
-c.import_collection('datos_personales.csv')
+c.import_collection('POO\datos_personales.csv')
 
 # Verfico que se han añadido los documentos
 for doc_id, doc in c.documentos.items():

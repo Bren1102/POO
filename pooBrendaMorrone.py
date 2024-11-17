@@ -1,6 +1,6 @@
 #Como leo un archivo linea a linea en python
 
-from main import Str2Dic
+from bd import Str2Dic
 
 f = open("csv_files/username.csv", "rt")
 
