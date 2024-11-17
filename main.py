@@ -27,6 +27,6 @@ c.import_collection('datos_personales.csv')
 
 # Verfico que se han añadido los documentos
 for doc_id, doc in c.documentos.items():
-   print(doc_id)
+   print(doc)
 
 

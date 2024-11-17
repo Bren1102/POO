@@ -10,7 +10,7 @@ class Documento:
         self.contenido[clave] = valor
 
     def __str__(self):
-        return "Documento(id={self.id}, contenido={self.contenido})"
+        return f"Documento(id={self.id}, contenido={self.contenido})"
     
 
 
