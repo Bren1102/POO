@@ -1,6 +1,6 @@
 class Documento:
-    def __init__(self, id, contenido=None):
-        self.id = id
+    def __init__(self, id_documento, contenido=None):
+        self.id_documento = id_documento
         self.contenido = contenido if contenido is not None else {}
 
     def obtener_valor(self, clave):
@@ -10,7 +10,7 @@ class Documento:
         self.contenido[clave] = valor
 
     def __str__(self):
-        return f"Documento(id={self.id}, contenido={self.contenido})"
+        return f"Documento id: {self.id_documento}, contenido: {self.contenido}"
     
 
 
@@ -20,7 +20,7 @@ class Coleccion:
         self.documentos = {}
     
     def añadir_documento(self, documento):
-        self.documentos[documento.id] =  documento
+        self.documentos[documento.id_documento] =  documento
 
     def eliminar_documento(self, id_documento):
         if id_documento in self.documentos:
@@ -30,15 +30,15 @@ class Coleccion:
         return self.documentos.get(id_documento, None)
     
     def __str__(self):
-        return "Coleccion {self.nombre} con {len(self.documentos)} documentos"
+        return f"Coleccion {self.nombre} con {len(self.documentos)} documentos"
 
 class BaseDeDatosDocumental:
-    def __init__(self):
+    def __init__(self, nombre=None, id_inicial=0):
         self.colecciones = {}
 
     def crear_coleccion(self, nombre_coleccion):
         if nombre_coleccion not in self.colecciones:
-            self.colecciones[nombre_coleccion] = Coleccion(nombre_coleccion)
+            self.colecciones[nombre_coleccion] = ColeccionNueva(nombre_coleccion)
 
     def eliminar_coleccion(self, nombre_coleccion):
         if nombre_coleccion in self.colecciones:
@@ -78,5 +78,29 @@ class Str2Dic():
         else:
             raise SchemaError("Los campos de la fila no concuerdan con el schema")
 
-            
-        
+
+class ColeccionNueva(Coleccion):
+   def __init__(self, nombre, id_inicial=0):
+      super().__init__(nombre)
+      self.id_inicial = id_inicial
+      self.id_documento = id_inicial
+
+   def import_collection(self, nombre_archivo):
+      with open(nombre_archivo, 'r') as f:
+         schema = f.readline().rstrip()
+         diccionario_schema = Str2Dic(schema)
+         linea = f.readline().strip()
+         while linea != "":
+            d = diccionario_schema.convert(linea)
+            doc = Documento(self.id_documento, d)
+            self.añadir_documento(doc) 
+            self.id_documento = self.id_documento + 1
+            #leer de vuelta al final
+            linea = f.readline().strip()
+   
+   def consultar_documento_por_id(self, id):
+       for doc in self.documentos:
+           if doc.id_documento == id:
+               return doc
+       return None
+    
