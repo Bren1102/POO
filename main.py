@@ -2,9 +2,12 @@ import csv
 
 from bd import Coleccion
 from bd import Documento
-from bd import Str2Dic
 from bd import BaseDeDatosDocumental
 from bd import ColeccionNueva
+from str2dic import Str2Dic
+from str2dic import SchemaError
+
+
 
 #Creo una nueva coleccion
 c = ColeccionNueva('pruebaDatos', 1)
