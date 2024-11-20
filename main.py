@@ -74,12 +74,12 @@ def main():
                print(f"La coleccion '{nombre_coleccion}' no existe")
          
          elif opcion == "5":
-            nombre_coleccion = input("Ingrese el nombre de la coleccion a exportar: ")
+            nombre_coleccion = input("Ingrese el nombre de la coleccion a mostrar: ")
             Coleccion = bd.obtener_coleccion(nombre_coleccion)
             if Coleccion:
                if Coleccion.documentos:
                   print("Documentos en la colección")
-                  for documento in Coleccion.documentos:
+                  for documento in Coleccion.documentos.values():
                      print(documento)
                else: 
                   print(f"La colección '{nombre_coleccion}' está vacía")
