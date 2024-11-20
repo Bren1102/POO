@@ -6,7 +6,7 @@ from bd import Str2Dic
 from bd import BaseDeDatosDocumental
 from bd import ColeccionNueva
 
-
+#Creo una nueva coleccion
 c = ColeccionNueva('pruebaDatos', 1)
 c.import_collection('datos_personales.csv')
 
@@ -33,12 +33,13 @@ def main():
 
     while True:
          opcion = mostrar_menu()
-
+         #Crear colección
          if opcion == "1": 
             nombre_coleccion = input("Ingrese el nombre de la coleccion: ")
             bd.crear_coleccion(nombre_coleccion)
             print(f"Colección '{nombre_coleccion}' creada")
          
+         #Importar datos
          elif opcion == "2":
             nombre_coleccion = input("Ingrese el nombre de la coleccion a importar: ")
             Coleccion = bd.obtener_coleccion(nombre_coleccion)
@@ -49,6 +50,7 @@ def main():
             else: 
                print(f"La coleccion '{nombre_coleccion}' no existe")
          
+         #Consultar documento
          elif opcion == "3":
             nombre_coleccion = input("Ingrese el nombre de la colección a consultar: ")
             coleccion = bd.obtener_coleccion(nombre_coleccion)
@@ -63,6 +65,7 @@ def main():
             else: 
                print(f"La coleccion '{nombre_coleccion}' no existe")
          
+         #Eliminar documento
          elif opcion == "4":
             nombre_coleccion = input("Ingrese el nombre de la colección a eliminar: ")
             Coleccion = bd.obtener_coleccion(nombre_coleccion)
@@ -73,6 +76,7 @@ def main():
             else:
                print(f"La coleccion '{nombre_coleccion}' no existe")
          
+         #Listar documentos
          elif opcion == "5":
             nombre_coleccion = input("Ingrese el nombre de la coleccion a mostrar: ")
             Coleccion = bd.obtener_coleccion(nombre_coleccion)
